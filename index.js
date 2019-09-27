@@ -2,19 +2,21 @@
 function sum() {
   console.log(arguments);
   console.log(typeof arguments); // object
-  console.log(Array.isArray(arguments));
+  console.log(Array.isArray(arguments)); // false
   const argumentsArray = Array.from(arguments);
   console.log(argumentsArray);
 }
 
-// arrow function expression
-const sum2 = () => {
+// arrow function expression -> Uncaught ReferenceError: arguments is not defined, cannot access arguments.
+
+// to fix this use ES6 rest operator
+const sum2 = (...arguments) => {
   console.log(arguments);
   console.log(typeof arguments); // object
-  console.log(Array.isArray(arguments));
+  console.log(Array.isArray(arguments)); //true
   const argumentsArray = Array.from(arguments);
   console.log(argumentsArray);
 };
 
-sum(1, 2, 3, 4, 5);
-sum2(1, 2, 3, 4, 5);
+sum(11, 12, 13, 14, 15);
+sum2(22, 23, 24, 25); // array of arguments
