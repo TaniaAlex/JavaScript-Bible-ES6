@@ -10,13 +10,7 @@ const fruits = [
   { title: "Apple", quantity: 25 }
 ];
 
-const primitiveTypesArray = [
-  25,
-  "x",
-  true,
-  undefined,
-  null
-];
+const primitiveTypesArray = [25, "x", true, undefined, null];
 
 /* Create a function "elementIsIncluded" with two parameters "searchElement" and "array". 
 
@@ -25,17 +19,17 @@ If type of the "searchElement" is object or array, you need to convert each elem
 If type of the "searchElement" is not an object or array - simply apply "includes" method and return result
 */
 
-console.log(elementIsIncluded(["css", "flexbox"], tags)); // true
+// map() throgh array and stringify each element -> apply Includes() as argument use search element also stringified to JSON
+const elIsIncluded = (searchEl, arr) => {
+  if (typeof searchEl !== "object") {
+    return arr.includes(searchEl);
+  } else if (typeof searchEl === "object") {
+    return arr.map(el => JSON.stringify(el)).includes(JSON.stringify(searchEl));
+  }
+};
 
-console.log(elementIsIncluded(["flexbox", "css"], tags)); // false
-
-console.log(
-  elementIsIncluded(
-    { title: "Apple", quantity: 25 },
-    fruits
-  )
-); // true
-
-console.log(elementIsIncluded({ title: "Banana" }, fruits)); // false
-
-console.log(elementIsIncluded(25, primitiveTypesArray)); // true
+console.log(elIsIncluded(25, primitiveTypesArray)); // true
+console.log(elIsIncluded(["css", "flexbox"], tags)); // true
+console.log(elIsIncluded(["flexbox", "css"], tags)); // false
+console.log(elIsIncluded({ title: "Apple", quantity: 25 }, fruits)); // true
+console.log(elIsIncluded({ title: "Banana" }, fruits)); // false
