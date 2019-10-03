@@ -191,3 +191,59 @@ const uniqueFruits = arrayOfFruits =>
   }, []);
 
 console.log(uniqueFruits(fruits));
+
+/**
+ * EXAMPLE 4 - Creating a Tally with the Reduce
+ *
+ *You have a collection of items and you want to know how many of each item are in the collection.
+
+ */
+const fruitBasket = [
+  "banana",
+  "cherry",
+  "orange",
+  "banana",
+  "cherry",
+  "orange",
+  "apple",
+  "cherry",
+  "orange",
+  "apple",
+  "banana",
+  "cherry",
+  "orange",
+  "fig",
+  "orange",
+  "fig",
+  "cherry",
+  "orange",
+  "fig",
+  "apple",
+  "fig",
+  "orange"
+];
+
+// To tally items in an array our initial value must be an empty object, not an empty array
+//Since we are going to be returning an object we can now store key-value pairs in the total.
+// On our first pass, we want the name of the first key to be our current value and we want to give it a value of 1.
+// This gives us an object with all the fruit as keys, each with a value of 1. We want the amount of each fruit to increase if they repeat.
+//To do this, on our second loop we check if our total contain a key with the current fruit of the reducer. If it doesn’t then we create it. If it does then we increment the amount by one.
+
+// OPTION 1
+
+const count1 = fruitBasket.reduce((tally, fruit) => {
+  if (!tally[fruit]) {
+    tally[fruit] = 1;
+  } else {
+    tally[fruit] = tally[fruit] + 1;
+  }
+  return tally;
+}, {});
+// OPTION 2 -> Optimized
+const count2 = fruitBasket.reduce((tally, fruit) => {
+  tally[fruit] = (tally[fruit] || 0) + 1;
+  return tally;
+}, {});
+
+console.log(count1); // { banana: 3, cherry: 5, orange: 7, apple: 3, fig:4
+console.log(count2); // { banana: 3, cherry: 5, orange: 7, apple: 3, fig:4
