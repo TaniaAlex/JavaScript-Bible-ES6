@@ -104,3 +104,24 @@ const total = smartphones.reduce((sum, currentValue) => {
 }, 0);
 
 console.log(total); // 132
+
+// SIMILAR CHALLENGE 4 -
+// Delete a key value pair inside an object
+const user = { name: "Klaus Main", age: 23, password: "SantaCl@use" };
+
+// // OPTION 1
+// const userWithoutPassword = Object.keys(user)
+//   .filter(key => key !== "password")
+//   .map(key => ({ [key]: user[key] }))
+//   .reduce((accumulator, current) => ({ ...accumulator, ...current }), {});
+
+// // OPTION 2
+// const userWithoutPassword = (({ name, age }) => ({ name, age }))(user);
+
+// // OPTION 3
+const userWithoutPassword = Object.keys(user).reduce(
+  (acc, key) => (key === "password" ? acc : { ...acc, [key]: user[key] }),
+  {}
+);
+console.log(userWithoutPassword);
+// userWithoutPassword becomes {name: 'Shivek Khurana', age: 23}
