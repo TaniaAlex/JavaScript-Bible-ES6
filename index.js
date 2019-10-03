@@ -38,6 +38,11 @@ This function "quantityByCategories" should return an object with keys equal to 
 
 const quantityByCategories = products => {
   return products.reduce((counts, product) => {
+    console.log(
+      `Counts is ${JSON.stringify(counts)} and product is ${JSON.stringify(
+        product
+      )}`
+    );
     counts[product.category] =
       (counts[product.category] || 0) + product.quantity;
     return counts;
@@ -72,3 +77,30 @@ console.log(categoryPosts); //
 backend: [2]
 frontend: (2)[1, 3]
  */
+
+// SIMILAR CHALLENGE 3 -
+// Smartphone array of product -> calculate a total quantity of available products
+const smartphones = [
+  {
+    brand: "iPhone 5",
+    color: "rosa gold",
+    quantity: 22
+  },
+  {
+    brand: "iPhone 6",
+    color: "arctic white",
+    quantity: 33
+  },
+  {
+    brand: "iPhone 10",
+    color: "lime",
+    quantity: 77
+  }
+];
+
+// Add their sum of quantity
+const total = smartphones.reduce((sum, currentValue) => {
+  return sum + currentValue.quantity;
+}, 0);
+
+console.log(total); // 132
