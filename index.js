@@ -18,9 +18,23 @@ const posts = [
 
 const minimalComentsQty = 10;
 
+const popularPostsIds = (posts, minimalComentsQty) => {
+  return posts.reduce((postsIds, post) => {
+    // console.log(postsIds, post);
+    // use condition to return postsId
+    if (post.comments >= minimalComentsQty) {
+      postsIds.push(post.postId);
+    }
+    //return all postsId
+    // postsIds.push(post.postId);
+    return postsIds;
+  }, []);
+};
+
 /* Create a function "popularPostsIds" with two parameters "posts" and "minimalComentsQty".
 
 This function "popularPostsIds" should return an array of postIds of posts that have quantity of "comments" at least equal to "minimalComentsQty"
 */
 
 console.log(popularPostsIds(posts, minimalComentsQty)); // [3421, 8135]
+// console.log(popularPostsIds(posts)); // [3421, 8135]
