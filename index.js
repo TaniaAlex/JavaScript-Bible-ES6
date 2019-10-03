@@ -3,7 +3,12 @@
  *
  * The reduce() method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value
  *
- * its an Array.prototype method and therefore must be called on an array. The parameters that it requires to do its job are a callback function and an optional initialValue. The callback is called by every single item in the Array. It takes a maximum of four arguments, two of which are optional (acc, item, [idx], [orgArray]). The two required arguments are acc, the one you need to understand the most, and item.
+ * its an Array.prototype method and therefore must be called on an array. The parameters that it requires to do its job are a callback function and an optional initialValue. The callback is called by every single item in the Array.
+ *
+ * !!!! IMPORTANT!!!!!   If you don’t pass in an initial value, reduce will assume the first item in your array is your initial value. This worked fine in the first few examples
+ *
+ * !!!! IMPORTANT!!!! You must "return" something for the reduce function to work.
+ *
  */
 // // EXAMPLE 1 - sum numbers
 // const myNumbers = [5, 10, 3, 15];
@@ -247,3 +252,49 @@ const count2 = fruitBasket.reduce((tally, fruit) => {
 
 console.log(count1); // { banana: 3, cherry: 5, orange: 7, apple: 3, fig:4
 console.log(count2); // { banana: 3, cherry: 5, orange: 7, apple: 3, fig:4
+
+/**
+ * EXAMPLE 5 - Flattening a nested array
+ *
+ * We set the initial value to an empty array and then concatenate the current value to the total.
+ *
+ * we just want all the colors in the data variable below.
+ * 1. step through each object and pull out the colours.
+ * 2. We do this by pointing amount.c for each object in the array.
+ * 3. We then use a forEach loop to push every value in the nested array into out total.
+ */
+const dataColors = [
+  { a: "happy", b: "robin", c: ["blue", "green"] },
+  { a: "tired", b: "panther", c: ["green", "black", "orange", "blue"] },
+  { a: "sad", b: "goldfish", c: ["green", "red"] }
+];
+
+/**
+ * 1. step through each object and pull out the colours.
+ * 2. We do this by pointing amount.c for each object in the array.
+ * 3. We then use a forEach loop to push every value in the nested array into out total.
+ */
+// OPTION 1
+const allColors = dataColors.reduce((total, amount) => {
+  amount.c.forEach(color => {
+    total.push(color);
+  });
+  return total;
+}, []);
+
+console.log(allColors); //['blue','green','green','black','orange','blue','green','red']
+//
+// OPTION 2
+/**
+ * If we only need unique number then we can check to see of the number already exists in total before we push it.
+ */
+const uniqueColors = dataColors.reduce((total, amount) => {
+  amount.c.forEach(color => {
+    if (total.indexOf(color) === -1) {
+      total.push(color);
+    }
+  });
+  return total;
+}, []);
+
+console.log(uniqueColors); // [ 'blue', 'red', 'green', 'black', 'orange']
