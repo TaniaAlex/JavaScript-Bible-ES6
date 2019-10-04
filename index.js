@@ -1,3 +1,11 @@
+/**
+ * sort() array of persons by friends Qty
+ *
+ *
+ * less than 0 — a comes before b
+ * greater than 0  — b comes before a
+ * equal to 0  — a and b are left unchanged with respect to each other
+ */
 const persons = [
   {
     name: "Andy",
@@ -66,12 +74,27 @@ const persons = [
 This function "sortPersonsByFriendsQty" should sort input array of persons by friendsQty of each person in ascending order and return resulting array.
 */
 
+// sort() persons by FRIENDS Qty
+const sortPersonsByFriendsQty = persons => {
+  // // count numbers of iterations
+  let iter = 0;
+  //   // sort in ascending order
+  persons.sort((a, b) => {
+    console.log(a.name, b.name);
+    iter++;
+    return a.friendsQty - b.friendsQty;
+  });
+  console.log(`Qty of iterations is ${iter}`); // 27
+  return persons;
+};
 sortPersonsByFriendsQty(persons);
+
 /* Which sorting algorithm is used here in Google Chrome, Firefox, Node.js? 
 
-Is this sorting stable or not?
+Q: Is this sorting stable or not?
+A: YES
 */
 
 console.log(persons);
-/* Array of persons sorted by friendsQty in ascending order 
-*/
+/* Array of persons sorted by friendsQty in ascending order
+ */
