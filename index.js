@@ -1,14 +1,36 @@
+/**
+ * ARRAY METHOD SORT()
+ *
+ * This method used to arrange/sort array's item either ascending or descending order.
+ *
+ * SOTR() Method MUTESTES ORIGINAL ARRAY
+ */
 /* 
-1. Sorting algorithm
-Insertion Sort - Google Chrome (Qty <= 10), Firefox, Node.js (Qty <= 10)
-Merge Sort - Safari
-2. Qty of iterations
-13
-*/
-const myNumbers = [10, 5, 79, 27, 50, 14, 27];
+1. Sorting algorithms:
+ MERGE SORT -> stable in most cases
+ BUBBLE SORT -> stable
+ QUICK SORT -> unstable
+ INSERTION SORT -> stable
+ ECMA SCRIPT doesn`t specify sorting algorithm => diff JS engine use diff sorting algorithm:
 
+ Google Chrome - ? Timsort = hybrid sorting algorithm, derived from MERGE and INSERSTION sort - V8
+ Firefox, Node.js (Qty <= 10) - Insertion Sort (if Qty <= 10) - 13 iterations
+ Safari - Merge Sort - ? iterations
+2. Qty of iterations - 12 
+*/
+// // EXAMPLE 1 -
+const myNumbers = [10, 5, 79, 27, 50, 14, 27];
+/**
+ * sort() without arguments => each element(number) in the array will be converted to string, compared
+ */
+// console.log("Sort without arguments:", myNumbers.sort());
+// console.log("*************");
+/**
+ * sort() with callback function and 2 parameters
+ */
 let i = 0;
 console.log(
+  "Sort with callback function:",
   myNumbers.sort((a, b) => {
     console.log(a, b);
     i++;
@@ -16,3 +38,19 @@ console.log(
   })
 );
 console.log("Qty of iterations is " + i);
+console.log("*************");
+/************************** */
+// // EXAMPLE 2 -
+const arr = [1, 2, 17, 7, 8, 9, 7, 10, 3, 4, 5, 6];
+const alpha = ["e", "b", "s", "ks", "a", "ka", "c", "u", "y"];
+
+// sort in descending order
+// descOrder = arr.sort((a, b) => (a > b ? -1 : 1));
+descOrder = arr.sort((a, b) => b - a);
+
+console.log(descOrder); // output: [6, 5, 4, 3, 2, 1]
+
+// sort in ascending order
+ascOrder = alpha.sort((a, b) => (a > b ? 1 : -1));
+
+console.log(ascOrder); // output: ['a', 'c', 'e', 'u', 'y']
