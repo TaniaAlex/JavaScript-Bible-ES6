@@ -3,8 +3,21 @@
  *
  * This method used to arrange/sort array's item either ascending or descending order.
  *
- * SOTR() Method MUTESTES ORIGINAL ARRAY
+ * SORT() Method MUTESTES ORIGINAL ARRAY
+ *
+ *
+ * sort() without arguments => each element(number) in the array will be converted to string, compared
+ *
+ * sort((a,b) => a - b) - sorts array in ascending order
+ *
+ * less than 0 — a comes before b
+ * greater than 0  — b comes before a
+ * equal to 0  — a and b are left unchanged with respect to each other
+ *
+ * * sort((a,b) => b - a) - sorts array in descending order
+ *
  */
+
 /* 
 1. Sorting algorithms:
  MERGE SORT -> stable in most cases
@@ -20,9 +33,7 @@
 */
 // // EXAMPLE 1 -
 const myNumbers = [10, 5, 79, 27, 50, 14, 27];
-/**
- * sort() without arguments => each element(number) in the array will be converted to string, compared
- */
+
 // console.log("Sort without arguments:", myNumbers.sort());
 // console.log("*************");
 /**
