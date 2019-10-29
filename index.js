@@ -11,29 +11,24 @@ Log messages in the console must be exactly the same as at the end of this chall
 
 const photoGallery = (title, dimensions, date) => {
   return {
-    title: title,
-    info: function() {
-      console.log(
-        "Dimenstions of the foto "${title}" are ${date}`
-      );
+    title,
+    dimensions,
+    date,
+    [dimensions]: true,
+    info() {
+      console.log(`Dimenstions of the picture "${title}" are ${dimensions}`);
     },
-    dimensions: dimensions
-    publishInfo: () => {
+    publishInfo() {
       console.log(
-        `Foto was published ${Math.floor(
+        `Photo "${title}" was published ${Math.floor(
           (new Date().getTime() - date.getTime()) / 1000
         )} seconds ago`
       );
-    ,
-    date: date
+    }
   };
 };
 
-const photo1 = photoGallery(
-  "My dog",
-  "1920x1080",
-  new Date()
-);
+const photo1 = photoGallery("My dog", "1920x1080", new Date());
 
 const testDimension1 = "1920x1080";
 const testDimension2 = "1080x720";
